@@ -16,6 +16,15 @@
                     <a class="nav-link text-black font-weight-bold" href="#">Contact</a>
                 </li>
             </ul>
+            {% if request.user.is_not_authenticated %}
+                <a class="nav-link text-black font-weight-bold" href="{% url 'signup' %}">
+                    <button type="button" class="btn btn-primary">Login</button>
+                </a>
+            {% else %}
+                <a class="nav-link text-black font-weight-bold" href="{% url 'logout' %}">
+                    <button type="button" class="btn btn-primary">Logout</button>
+                </a>
+            {% endif %}
         </div>
     </div>
 </nav>
