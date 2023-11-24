@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required  
 from .models import Post,Category
 from authentication.views import *
 from .forms import AddPostForm
@@ -30,7 +31,8 @@ def category_posts(request, category_id):
 
 
 
-# add blog post  
+# add blog post
+@login_required(login_url='login')
 def add_post(request):
     if request.method == 'POST':
         form = AddPostForm(request.POST, request.FILES)

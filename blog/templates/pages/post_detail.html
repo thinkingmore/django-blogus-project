@@ -8,7 +8,12 @@
                     <div class="card-body">
                         <h2 class="card-title">{{ post.title }}</h2>
                         <p class="card-text text-muted h6">{{ post.author }} | {{ post.created_on|date:"F d, Y" }}</p>
-                        <img src="{{ post.image.url }}" class="card-img-top py-4" alt="{{ post.title }}">
+                        {% if post.image and post.image.url %}
+                            <img src="{{ post.image.url }}" class="card-img" alt="{{ post.title }}">
+                        {% else %}
+                            <!-- Provide a default image or leave it empty -->
+                            <img src="https://placehold.co/600x400?text=Image+not+available" class="card-img" alt="{{ post.title }}">
+                        {% endif %}
                         <p class="card-text">{{ post.content }}</p>
                     </div>
                 </div>

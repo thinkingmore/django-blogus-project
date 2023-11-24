@@ -12,9 +12,21 @@
                 <li class="nav-item text-black">
                     <a class="nav-link text-black font-weight-bold" href="#">About</a>
                 </li>
-                <li class="nav-item text-black">
-                    <a class="nav-link text-black font-weight-bold" href="#">Contact</a>
+                {% if request.user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-black dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      {{request.user}}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item">
+                            <a class="dropdown-item" href="{% url 'add_post' %}">Add a Post</a>
+                        </li>
+                        <li><a class="dropdown-item" href="#">My Posts</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">My Profile</a></li>
+                    </ul>
                 </li>
+                {% endif %}
             </ul>
             {% if request.user.is_not_authenticated %}
                 <a class="nav-link text-black font-weight-bold" href="{% url 'signup' %}">
